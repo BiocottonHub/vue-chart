@@ -34,7 +34,7 @@ export default {
           github: 'https://github.com/zpliu1126'
         },
         {
-          name: 'xylong',
+          name: 'yxlong',
           icon: 'https://s1.ax1x.com/2020/04/17/JZgfpQ.png',
           github: 'https://github.com/yxlong-science'
         },

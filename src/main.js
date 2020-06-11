@@ -9,8 +9,8 @@ Vue.config.productionTip = false
 /**
  * hightChart
  */
-import HighchartsVue from 'highcharts-vue'
-Vue.use(HighchartsVue)
+// import HighchartsVue from 'highcharts-vue'
+// Vue.use(HighchartsVue)
 
 Vue.use(ElementUI)
 
