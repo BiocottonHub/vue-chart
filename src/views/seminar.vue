@@ -17,7 +17,8 @@ const request = axios.create({
 export default {
   data () {
     return {
-      data: ''
+      data: []
+
     }
   },
   beforeCreate () {

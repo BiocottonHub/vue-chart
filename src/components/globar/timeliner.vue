@@ -11,10 +11,23 @@
         <div class="timeline-content">
           <div class="content-body">
             <h2>{{ item.title }}</h2>
-            <div class="paperList" v-for="(paper,index2) in item.content" :key="index2">
+            <ul class="paperList" v-for="(paper,index2) in item.content" :key="index2">
               <li>
-                <a href="paper.url">{{paper.title}}</a>
+                <a
+                  :href="paper.url ? paper.url: '/#/seminar'"
+                  target="_Blank"
+                  :style="haveNote(paper.url)"
+                >{{paper.title}}</a>
+                <div class="author">
+                  <span class="el-icon-lollipop"></span>
+                  {{paper.author}}
+                </div>
               </li>
+            </ul>
+            <div class="powerpoint">
+              <a :href="item.powerpointUrl" target="_Blank">
+                <el-button type="success" round icon="el-icon-download">powerpoint</el-button>
+              </a>
             </div>
           </div>
         </div>
@@ -57,6 +70,14 @@ export default {
       default: '#f2f2f2'
     }
   },
+  methods: {
+    haveNote (url) {
+      if (url == "") {
+        return { color: "#7f8c8d" }
+      }
+
+    }
+  },
   filters: {
     formatDate (time) {
       return parseTime(time, '{y}年{m}月{d} {h}:{i}')
@@ -77,6 +98,16 @@ export default {
   a {
     text-decoration: none;
   }
+  li {
+    div {
+      text-align: right;
+      color: #f39c12;
+    }
+  }
+}
+.powerpoint {
+  position: relative;
+  text-align: right;
 }
 #hzqing {
   list-style: none;
