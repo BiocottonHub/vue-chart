@@ -19,8 +19,15 @@
                   :style="haveNote(paper.url)"
                 >{{paper.title}}</a>
                 <div class="author">
-                  <span class="el-icon-lollipop"></span>
-                  {{paper.author}}
+                  <span v-for="(ca,index3) in paper.category" :key="index3">
+                    <el-tag effect="plain">{{ca}}</el-tag>
+                  </span>
+                  <span>
+                    <a :href="paper.source" target="_Blank">
+                      <el-tag effect="dark">原文链接</el-tag>
+                    </a>
+                  </span>
+                  <span class="el-icon-lollipop">{{paper.author}}</span>
                 </div>
               </li>
             </ul>
@@ -80,7 +87,7 @@ export default {
   },
   filters: {
     formatDate (time) {
-      return parseTime(time, '{y}年{m}月{d} {h}:{i}')
+      return parseTime(new Date(time).getTime(), '{y}年{m}月{d} {h}:{i}')
     }
   },
   mounted () {
@@ -102,6 +109,12 @@ export default {
     div {
       text-align: right;
       color: #f39c12;
+      span {
+        margin-right: 5px;
+      }
+      span:nth-last-child(3) {
+        margin-right: 40px;
+      }
     }
   }
 }
