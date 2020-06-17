@@ -19,15 +19,27 @@
                   :style="haveNote(paper.url)"
                 >{{paper.title}}</a>
                 <div class="author">
-                  <span v-for="(ca,index3) in paper.category" :key="index3">
-                    <el-tag effect="plain">{{ca}}</el-tag>
-                  </span>
-                  <span>
-                    <a :href="paper.source" target="_Blank">
-                      <el-tag effect="dark">原文链接</el-tag>
-                    </a>
-                  </span>
-                  <span class="el-icon-lollipop">{{paper.author}}</span>
+                  <el-row>
+                    <el-col
+                      :xs="12"
+                      :sm="12"
+                      :md="4"
+                      :lg="6"
+                      :xl="6"
+                      v-for="(ca,index3) in paper.category"
+                      :key="index3"
+                    >
+                      <el-tag effect="plain">{{ca}}</el-tag>
+                    </el-col>
+                    <el-col>
+                      <span class="el-icon-lollipop">{{paper.author}}</span>
+                    </el-col>
+                    <el-col>
+                      <a :href="paper.source" target="_Blank">
+                        <el-tag effect="dark">原文链接</el-tag>
+                      </a>
+                    </el-col>
+                  </el-row>
                 </div>
               </li>
             </ul>
@@ -51,7 +63,7 @@ export default {
   components: {
     Avatar
   },
-  data () {
+  data() {
     return {
       timeItemList: [
         {
@@ -66,9 +78,12 @@ export default {
   props: {
     dataList: {
       type: Array,
-      default: () => { this.timeItemList }
+      default: () => {
+        this.timeItemList
+      }
     },
-    timelineColor: { // 组建背景颜色
+    timelineColor: {
+      // 组建背景颜色
       type: String,
       default: '#5bbcd5'
     },
@@ -78,19 +93,18 @@ export default {
     }
   },
   methods: {
-    haveNote (url) {
-      if (url == "") {
-        return { color: "#7f8c8d" }
+    haveNote(url) {
+      if (url == '') {
+        return { color: '#7f8c8d' }
       }
-
     }
   },
   filters: {
-    formatDate (time) {
+    formatDate(time) {
       return parseTime(new Date(time).getTime(), '{y}年{m}月{d} {h}:{i}')
     }
   },
-  mounted () {
+  mounted() {
     const timeline = this.$refs.timeline
     timeline.style.setProperty('--timelineColor', this.timelineColor)
     timeline.style.setProperty('--timeContentColor', this.timeContentColor)
