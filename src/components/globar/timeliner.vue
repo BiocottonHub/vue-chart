@@ -14,7 +14,8 @@
             <ul class="paperList" v-for="(paper,index2) in item.content" :key="index2">
               <li>
                 <a
-                  :href="paper.url ? paper.url: '/#/seminar'"
+                  :href="paper.url"
+                  @click="preventJump(paper.url,$event)"
                   target="_Blank"
                   :style="haveNote(paper.url)"
                 >{{paper.title}}</a>
@@ -96,6 +97,15 @@ export default {
     haveNote(url) {
       if (url == '') {
         return { color: '#7f8c8d' }
+      }
+    },
+    preventJump(url, event) {
+      if (url == '') {
+        event.preventDefault() //阻止跳转事件
+        this.$message({
+          message: "Sorry this paper don't  have note",
+          type: 'warning'
+        })
       }
     }
   },
